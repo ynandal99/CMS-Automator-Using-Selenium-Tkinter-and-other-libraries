@@ -551,15 +551,12 @@ def NMC(fun):
 def CASFA():
   start()
   active()
-  clause_text = data.loc['draft-NAC'].to_dict()['value']
   j=0
   for i in range(len(driver.window_handles)):
     try:
       driver.switch_to.window(driver.window_handles[i+1])
       #click on NAC
-      WebDriverWait(driver, 2).until(EC.visibility_of_element_located((By.XPATH, '*//span[text()="Not a Complaint"]'))).click()
-      #sending TAB and values in comments field
-      ActionChains(driver).key_down(Keys.TAB).key_up(Keys.TAB).send_keys(clause_text).perform()  
+      WebDriverWait(driver, 2).until(EC.visibility_of_element_located((By.XPATH, '*//span[text()="Final Decision"]'))).click()  
       #click on Save and Proceed
       WebDriverWait(driver, 2).until(EC.visibility_of_element_located((By.XPATH, '*//span[text()="Save and Proceed"]'))).click()
     except (NoSuchElementException, TimeoutException, IndexError):
@@ -3821,7 +3818,7 @@ buttonEA.place(x=next(a), y=next(a))
 buttonMl = ttk.Button(canvas, text = 'Mailer-9(2,3.a,3.b,3.c)', style="C.TButton",command = mailer)
 buttonMl.grid(row=5,column=5)
 buttonMl.place(x=next(a), y=next(a))
-buttonCASFA = ttk.Button(canvas, text = 'Close SFA as NAC', style="C.TButton",command = CASFA)
+buttonCASFA = ttk.Button(canvas, text = 'Close NBFCO-D', style="C.TButton",command = CASFA)
 buttonCASFA.grid(row=5,column=5)
 buttonCASFA.place(x=next(a), y=next(a))
 buttonactive = ttk.Button(canvas, text = 'Switch to Active Tab', style="C.TButton",command = active)
